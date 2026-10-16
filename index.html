@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>BF6 Season 5 Loadouts</title>
+<style>html,body{margin:0;background:#0b0d10;color:#e9edf1}:root{--color-fg-muted:#8a96a3;--font-anthropic-sans:Inter,system-ui,sans-serif}body{font-family:Inter,system-ui,sans-serif}#dash-root{max-width:1400px;margin:0 auto;padding:var(--dash-gutter,16px)}</style>
+<script>
+// Standalone replacement for the dashboard runtime: loads data/*.json
+window.dash=(function(){
+  const names=['weapons','progression','patch'], store={}, subs=[];
+  names.forEach(n=>store[n]={status:'loading',data:[]});
+  const fire=()=>subs.forEach(f=>f());
+  names.forEach(n=>fetch('data/'+n+'.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return r.json()})
+    .then(d=>{store[n]={status:'ok',data:d};fire()}).catch(()=>{store[n]={status:'error',data:[]};fire()}));
+  return {data:n=>store[n]||{status:'error',data:[]}, onData:f=>{subs.push(f);f()}, setLink:()=>{}};
+})();
+</script>
+</head><body><div id="dash-root">
+<style>
+#dash-root{--dash-gutter:clamp(12px,3vw,32px)}
+.bf{
+  --bg:#0b0d10; --bg2:#11151a; --panel:#151a20; --panel2:#1b2129; --line:#262e38; --line2:#323c48;
+  --fg:#e9edf1; --muted:#8a96a3; --dim:#5d6875;
+  --accrgb:34,211,238; --acc:#22d3ee; --acc2:#67e8f9; --accink:#03161b; --accglow:rgba(var(--accrgb),.35);
+  --ok:#3ddc97; --tS:#ffb020; --tA:#2ec4b6; --tB:#4d8dff; --tC:#7b8794; --tN:#a78bfa;
+  --cond:'Bahnschrift','Barlow Condensed','Oswald','Roboto Condensed','Arial Narrow',var(--font-anthropic-sans),sans-serif;
+  font-family:var(--font-anthropic-sans);color:var(--fg);max-width:1520px;margin-inline:auto;
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(var(--accrgb),.10), transparent 60%),
+    radial-gradient(900px 400px at -10% 10%, rgba(77,141,255,.07), transparent 60%),
+    linear-gradient(var(--bg),var(--bg));
+  border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.5vw,28px);position:relative;overflow:hidden}
+.bf::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:32px 32px;mask-image:linear-gradient(180deg,#000 0,transparent 420px)}
+.bf>*{position:relative}
+.bf-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:22px}
+.bf-head h1{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(26px,4vw,44px);line-height:1;margin:0}
+.bf-head h1 span{color:var(--acc);text-shadow:0 0 24px var(--accglow)}
+.bf-kicker{font-family:var(--cond);text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--acc);margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.bf-kicker::before{content:"";width:22px;height:2px;background:var(--acc);box-shadow:0 0 10px var(--acc)}
+.bf-take{color:var(--muted);font-size:14px;margin:0;max-width:68ch;line-height:1.5;flex-basis:100%}
+.bf-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start}
+@media (min-width:980px){.bf-layout{grid-template-columns:minmax(17rem,21rem) minmax(0,1fr)}}
+.bf-card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.bf-card h2{font-family:var(--cond);text-transform:uppercase;letter-spacing:.08em;font-size:15px;font-weight:700;margin:0 0 12px;color:var(--fg);display:flex;align-items:center;gap:8px}
+.bf-card h2::before{content:"";width:4px;height:14px;border-radius:2px;background:var(--acc)}
+.bf-sub{font-size:12px;color:var(--muted);margin:-6px 0 10px}
+.bf-search{font:inherit;font-size:13px;padding:10px 12px 10px 34px;border:1px solid var(--line2);border-radius:10px;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%238a96a3' stroke-width='2'%3E%3Ccircle cx='7' cy='7' r='5'/%3E%3Cpath d='M11 11l4 4'/%3E%3C/svg%3E") no-repeat 11px center;color:var(--fg);width:100%;box-sizing:border-box;margin-bottom:12px;outline:none}
+.bf-search:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--accglow)}
+.bf-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.bf-chip,.bf-btn{font-family:var(--cond);text-transform:uppercase;letter-spacing:.06em;font-size:12px;font-weight:600;background:var(--panel2);color:var(--muted);border:1px solid var(--line2);border-radius:8px;padding:6px 10px;cursor:pointer;transition:all .15s}
+.bf-chip:hover,.bf-btn:hover{color:var(--fg);border-color:var(--dim)}
+.bf-chip[aria-pressed=true],.bf-btn[aria-pressed=true]{background:linear-gradient(180deg,var(--acc2),var(--acc));color:var(--accink);border-color:var(--acc);box-shadow:0 0 16px var(--accglow)}
+.bf-list{max-height:70vh;overflow-y:auto;overflow-x:hidden;min-height:10rem;margin:0 -6px;padding:0 6px;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+table.bf-t,.bf-t tbody{display:block;width:100%}
+.bf-t thead{display:none}
+.bf-t tbody tr{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name tier" "cat meta";gap:2px 10px;align-items:center;
+  margin:0 0 6px;padding:9px 12px;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--tC);border-radius:10px;cursor:pointer;transition:background .15s,border-color .15s}
+.bf-t td{padding:0;border:0;background:none;min-width:0}
+.bf-t td:nth-child(1){grid-area:name;font-family:var(--cond);font-weight:700;font-size:15px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bf-t td:nth-child(2){grid-area:cat;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bf-t td:nth-child(3){grid-area:tier;justify-self:end}
+.bf-t td:nth-child(4){grid-area:meta;justify-self:end}
+.bf-t tbody tr:hover{background:#212934;border-color:var(--line2)}
+.bf-t tbody tr.tS{border-left-color:var(--tS)}
+.bf-t tbody tr.tA{border-left-color:var(--tA)}
+.bf-t tbody tr.tB{border-left-color:var(--tB)}
+.bf-t tbody tr.tN{border-left-color:var(--tN)}
+.bf-t tbody tr.sel{background:linear-gradient(90deg,rgba(var(--accrgb),.20),rgba(var(--accrgb),.05));border-color:rgba(var(--accrgb),.55);box-shadow:0 0 0 1px rgba(var(--accrgb),.25),0 0 18px rgba(var(--accrgb),.15)}
+.tier{display:inline-grid;place-items:center;min-width:26px;height:22px;padding:0 6px;border-radius:6px;font-family:var(--cond);font-weight:800;font-size:12px;letter-spacing:.04em;white-space:nowrap;color:#0b0d10;background:var(--tC)}
+.tier.S{background:linear-gradient(180deg,#ffd166,var(--tS));box-shadow:0 0 12px rgba(255,176,32,.4)}
+.tier.A{background:var(--tA)}
+.tier.B{background:var(--tB);color:#fff}
+.tier.C{background:var(--tC)}
+.tier.N{background:var(--tN)}
+#detail{padding:22px}
+.bf-dhead{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.bf-dhead h2{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.03em;font-size:clamp(28px,4vw,46px);line-height:1;margin:0;color:var(--fg)}
+.bf-dhead h2::before{display:none}
+.bf-dhead .tier{height:28px;min-width:34px;font-size:15px}
+.bf-meta{font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.5}
+.bf-dhead .bf-meta{margin:0;font-family:var(--cond);text-transform:uppercase;letter-spacing:.12em;font-size:12px;padding:4px 8px;border:1px solid var(--line2);border-radius:6px}
+.bf-slider{margin:20px 0 6px;display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.bf-srow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bf-lvl{font-family:var(--cond);font-weight:700;font-size:28px;letter-spacing:.03em;font-variant-numeric:tabular-nums;min-width:4.4ch;margin-right:6px;color:var(--acc);text-shadow:0 0 18px var(--accglow)}
+.bf-range{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:99px;background:linear-gradient(90deg,var(--acc) 0,var(--acc2) var(--p,25%),var(--line2) var(--p,25%));outline:none;cursor:pointer}
+.bf-range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid var(--acc);box-shadow:0 0 0 4px var(--accglow)}
+.bf-range::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--acc);box-shadow:0 0 0 4px var(--accglow)}
+.bf-ticks{display:flex;justify-content:space-between;font-family:var(--cond);font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums}
+#detail-body>.bf-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.bf-gun{width:100%;height:auto;display:block;margin:14px 0 4px;border-radius:12px;background:radial-gradient(60% 70% at 50% 55%,rgba(var(--accrgb),.07),transparent 70%)}
+.bf-gun .body{fill:#2a323d;stroke:#4a5563;stroke-width:1.5}
+.bf-gun .part{fill:#1d242d;stroke:#3a4452;stroke-width:1.5;stroke-dasharray:4 3}
+.bf-gun .part.on{fill:rgba(var(--accrgb),.28);stroke:var(--acc);stroke-dasharray:none;filter:drop-shadow(0 0 6px rgba(var(--accrgb),.55))}
+.bf-gun .lead{stroke:#4a5563;stroke-width:1}
+.bf-gun .slot{font-size:11px;fill:var(--acc);font-family:var(--cond);letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.bf-gun .att{font-size:17px;fill:var(--fg);font-weight:700;font-family:var(--cond)}
+.bf-gun .att.new{fill:var(--ok)}
+.bf-gun .lv{font-size:12px;fill:var(--muted);font-family:var(--font-anthropic-sans)}
+.bf-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:12px;margin-top:14px}
+.bf-box{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--panel2);position:relative;overflow:hidden}
+.bf-box::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:var(--acc)}
+.bf-box:nth-child(1)::before{background:#ff4d6d}
+.bf-box:nth-child(2)::before{background:var(--tB)}
+.bf-box:nth-child(3)::before{background:var(--ok)}
+.bf-box h3{margin:0 0 8px;font-family:var(--cond);text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:700;color:var(--fg)}
+.bf-box ul{margin:0;padding:0;list-style:none;font-size:13px;line-height:1.5;display:grid;gap:6px}
+.bf-box li{padding:6px 8px;border-radius:8px;background:var(--bg)}
+.bf-box li:last-child:not(:first-child){background:transparent;color:var(--muted);font-family:var(--cond);letter-spacing:.06em;padding-top:0}
+.bf-box p{margin:0;font-size:13px;line-height:1.55}
+.st{font-size:12px;white-space:nowrap;font-family:var(--cond);text-transform:uppercase;letter-spacing:.08em}
+.st::before{content:"";display:inline-block;width:.5rem;height:.5rem;border-radius:50%;margin-right:5px;vertical-align:middle;background:var(--muted)}
+.st.verified::before{background:var(--ok);box-shadow:0 0 8px var(--ok)}
+.st.derived::before{background:var(--acc2)}
+.st.provisional::before{background:#ff4d6d}
+.bf-notes{margin:0;padding-left:1.2em;font-size:13px;line-height:1.6;color:var(--muted)}
+.bf-notes li::marker{color:var(--acc);font-family:var(--cond)}
+.bf-empty{color:var(--muted);font-size:13px;padding:16px}
+.bf-patch{margin-top:16px}
+.dash-skeleton{border-radius:10px}
+[data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+[data-dash-source-state=empty]{color:transparent}
+.bf.orange{--accrgb:255,122,26;--acc:#ff7a1a;--acc2:#ffb347;--accink:#1a0d02}
+.bf.green{--accrgb:34,197,94;--acc:#22c55e;--acc2:#86efac;--accink:#03140a}
+.bf-theme{display:inline-flex;gap:6px;align-items:center;font-family:var(--cond);text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--muted)}
+.bf-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line2);cursor:pointer;padding:0}
+.bf-dot[aria-pressed=true]{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.15)}
+.bf-dot.c{background:#22d3ee}.bf-dot.o{background:#ff7a1a}.bf-dot.g{background:#22c55e}
+.bf-t td.meta{font-family:var(--cond);font-size:12px;color:var(--acc);white-space:nowrap;font-variant-numeric:tabular-nums}
+.bf-t td.meta::before{content:"META ";color:var(--dim);letter-spacing:.08em}
+</style>
+
+<div class="bf">
+  <header class="bf-head" id="top">
+    <div><p class="bf-kicker">Season 5 · Siege of Vegas</p>
+    <h1>BF6 <span>Loadouts</span></h1></div>
+    <div class="bf-theme" role="group" aria-label="Accent color">Accent
+      <button class="bf-dot c" data-acc="cyan" aria-label="Cyan" aria-pressed="true"></button>
+      <button class="bf-dot o" data-acc="orange" aria-label="Orange" aria-pressed="false"></button>
+      <button class="bf-dot g" data-acc="green" aria-label="Green" aria-pressed="false"></button>
+    </div>
+    <p class="bf-take">Pick a weapon, then drag the level slider to your weapon level: the build updates to the best overall setup you have unlocked, with swap tips for close and long range and the next upgrade to grind for. Meta shows the source meta build and, in brackets, the weapon level it needs.</p>
+  </header>
+
+  <div class="bf-layout">
+    <section class="bf-card" id="picker">
+      <h2>Weapons</h2>
+      <input class="bf-search" id="q" type="search" placeholder="Search weapon…" aria-label="Search weapon">
+      <div class="bf-chips" id="cats" role="group" aria-label="Category"></div>
+      <div class="bf-list">
+        <table class="bf-t" id="wt" data-source="weapons" data-row-key="weapon">
+          <thead><tr>
+            <th data-field="weapon">Weapon</th>
+            <th data-field="category">Type</th>
+            <th data-field="tier">Tier</th>
+            <th data-field="endgame_level">Meta</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="bf-card" id="detail">
+      <div id="detail-head"></div>
+      <div class="bf-slider" id="slider">
+        <div class="bf-srow">
+          <span class="bf-lvl" id="lvlbig">Lvl 10</span>
+          <button class="bf-btn" data-l="10">Lvl 10</button>
+          <button class="bf-btn" data-l="20">Lvl 20</button>
+          <button class="bf-btn" data-l="30">Lvl 30</button>
+          <button class="bf-btn" data-l="end">Meta</button>
+        </div>
+        <input class="bf-range" id="rng" type="range" min="0" max="40" step="1" value="10" aria-label="Weapon level">
+        <div class="bf-ticks"><span>0</span><span>10</span><span>20</span><span>30</span><span>40</span></div>
+      </div>
+      <div id="detail-body"><div class="bf-empty dash-skeleton" style="min-height:20rem"></div></div>
+    </section>
+  </div>
+
+  <section class="bf-card bf-patch" id="patch">
+    <h2>What Season 5 changes for loadouts</h2>
+    <p class="bf-sub">Update 2.1.1.0, October 13, 2026</p>
+    <ol class="bf-notes" id="pn"></ol>
+  </section>
+</div>
+
+<script>
+(function(){
+  const CATS = ['All','Assault Rifle','Carbine','SMG','LMG','DMR','Sniper','Shotgun','Sidearm'];
+  const CAT_LABEL = {'All':'All','Assault Rifle':'ARs','Carbine':'Carbines','SMG':'SMGs','LMG':'LMGs','DMR':'DMRs','Sniper':'Snipers','Shotgun':'Shotguns','Sidearm':'Sidearms'};
+  const state = {cat:'All', q:'', weapon:null, level:10, end:false};
+  const tierRank = (t) => { const c = String(t||'').charAt(0); const i = ['S','A','B','C','N'].indexOf(c); return i < 0 ? 5 : i; };
+  document.querySelectorAll('.bf-dot').forEach(b => b.addEventListener('click', () => {
+    const root = document.querySelector('.bf');
+    root.classList.toggle('orange', b.dataset.acc === 'orange');
+    root.classList.toggle('green', b.dataset.acc === 'green');
+    document.querySelectorAll('.bf-dot').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+  }));
+  const tierClass = (t) => { const c = String(t||'').charAt(0); return ['S','A','B','C'].includes(c) ? c : 'N'; };
+  const enc = (v) => String(v).replace(/%/g,'%25').replace(/&/g,'%26').replace(/=/g,'%3D');
+  const mark = (el, key, field) => { el.setAttribute('data-source','progression'); el.setAttribute('data-where','key=' + enc(key)); el.setAttribute('data-field', field); return el; };
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const sv = (tag, attrs, parent) => { const e = document.createElementNS(SVGNS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const split = (v) => { const m = /^(.*) · (\d+) pts · L(.*)$/.exec(v || ''); return m ? {name:m[1], pts:m[2], lvl:m[3]} : (v ? {name:v, pts:'', lvl:''} : null); };
+
+  // category chips
+  const cats = document.getElementById('cats');
+  CATS.forEach(c => { const b = document.createElement('button'); b.className = 'bf-chip'; b.textContent = CAT_LABEL[c]; b.dataset.v = c;
+    b.addEventListener('click', () => { state.cat = c; render(); }); cats.appendChild(b); });
+  const q = document.getElementById('q');
+  q.addEventListener('input', () => { state.q = q.value.trim().toLowerCase(); render(); });
+  document.querySelector('#wt tbody').addEventListener('click', (e) => {
+    const tr = e.target.closest('tr[data-key]'); if (!tr) return;
+    state.weapon = tr.dataset.key; state.end = false; render(); dash.setLink('detail');
+    if (window.innerWidth < 980) document.getElementById('detail').scrollIntoView({block:'start'});
+  });
+
+  const rng = document.getElementById('rng');
+  rng.addEventListener('input', () => { state.level = +rng.value; state.end = false; render(); });
+  document.querySelectorAll('#slider .bf-btn').forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.l === 'end') state.end = true; else { state.level = +b.dataset.l; state.end = false; }
+    render();
+  }));
+  function syncSlider(){
+    rng.value = state.level; rng.style.setProperty('--p', (state.level / 40 * 100) + '%');
+    document.getElementById('lvlbig').textContent = state.end ? 'Meta' : 'Lvl ' + state.level;
+    document.querySelectorAll('#slider .bf-btn').forEach(b => b.setAttribute('aria-pressed',
+      (b.dataset.l === 'end' ? state.end : (!state.end && +b.dataset.l === state.level)) ? 'true' : 'false'));
+  }
+  function rowsFor(all, w){ return all.filter(r => r.weapon === w); }
+  function pick(levelRows, L){ let best = levelRows[0]; levelRows.forEach(r => { if (+r.level <= L && +r.level >= +best.level) best = r; }); return best; }
+
+  const R = (x,y,w,h,r) => ({t:'rect', a:{x, y, width:w, height:h, rx:r||4}});
+  const P = (d) => ({t:'path', a:{d}});
+  const AR_BODY = 'M40 160 L170 150 L190 140 L430 140 L440 150 L590 150 L590 176 L440 176 L430 196 L300 196 L288 246 L254 246 L264 196 L200 196 L180 186 L60 206 L40 206 Z';
+  const GUNS = {
+    'Assault Rifle': {body:AR_BODY, Scope:R(300,106,130,26,8), Barrel:R(590,156,90,12,3), Muzzle:R(680,153,44,18), Underbarrel:R(500,176,24,50,5), Magazine:P('M330 196 L372 196 L384 262 L346 266 Z'), Ammunition:R(396,204,30,20)},
+    'Carbine': {body:'M70 158 L180 152 L196 140 L420 140 L430 150 L530 150 L530 176 L430 176 L420 196 L300 196 L288 246 L254 246 L264 196 L200 196 L186 182 L70 190 Z', Scope:R(290,106,120,26,8), Barrel:R(530,156,70,12,3), Muzzle:R(600,153,40,18), Underbarrel:R(470,176,24,46,5), Magazine:P('M326 196 L366 196 L378 258 L340 262 Z'), Ammunition:R(386,204,30,20)},
+    'SMG': {body:'M120 160 L210 156 L220 140 L420 140 L430 150 L480 150 L480 176 L430 176 L420 196 L330 196 L318 246 L286 246 L296 196 L230 196 L214 180 L120 184 Z', Scope:R(280,108,110,24,8), Barrel:R(480,156,50,12,3), Muzzle:R(530,153,40,18), Underbarrel:R(445,176,22,44,5), Magazine:P('M350 196 L380 196 L386 270 L356 272 Z'), Ammunition:R(392,204,28,20)},
+    'LMG': {body:'M40 160 L170 150 L190 136 L460 136 L470 150 L640 150 L640 178 L470 178 L460 200 L300 200 L288 250 L254 250 L264 200 L200 200 L180 188 L60 208 L40 208 Z', Scope:R(300,102,130,26,8), Barrel:R(640,157,70,12,3), Muzzle:R(710,153,46,20), Underbarrel:R(570,178,22,56,5), Magazine:R(330,200,80,58,6), Ammunition:R(420,206,30,20)},
+    'DMR': {body:AR_BODY, Scope:R(290,102,150,30,10), Barrel:R(590,156,120,12,3), Muzzle:R(710,153,40,18), Underbarrel:R(500,176,24,50,5), Magazine:P('M330 196 L370 196 L374 240 L334 242 Z'), Ammunition:R(396,204,30,20)},
+    'Sniper': {body:'M40 168 L150 150 L190 146 L420 146 L430 152 L560 152 L560 172 L430 172 L420 186 L320 186 L300 232 L270 232 L282 186 L200 186 L150 200 L40 212 Z', Scope:R(250,104,200,30,12), Barrel:R(560,157,160,10,3), Muzzle:R(720,154,40,16), Underbarrel:R(520,172,20,60,5), Magazine:R(340,186,40,36,4), Ammunition:R(390,192,28,18)},
+    'Shotgun': {body:'M40 160 L170 152 L190 142 L380 142 L390 150 L640 150 L640 170 L390 170 L380 190 L290 190 L278 240 L246 240 L256 190 L200 190 L180 182 L60 200 L40 200 Z', Scope:R(280,110,100,24,8), Barrel:R(640,152,60,14,3), Muzzle:R(700,150,40,20), Underbarrel:R(470,184,80,22,6), Magazine:R(390,172,250,12,4), Ammunition:R(320,198,30,20)},
+    'Sidearm': {body:'M300 150 L540 150 L540 186 L420 186 L410 196 L400 266 L350 266 L356 196 L330 186 L300 186 Z', Scope:R(400,124,70,22,6), Barrel:R(540,160,40,14,3), Muzzle:R(580,157,34,20), Underbarrel:R(470,186,30,16,4), Magazine:P('M364 214 L396 214 L392 262 L358 262 Z'), Ammunition:R(430,204,24,18)},
+  };
+  const LABELS = {
+    Ammunition:{x:20, y:28, top:true}, Scope:{x:300, y:28, top:true}, Muzzle:{x:600, y:28, top:true},
+    Magazine:{x:40, y:312}, Underbarrel:{x:320, y:312}, Barrel:{x:600, y:312},
+  };
+  function partCenter(def){
+    if (def.t === 'rect') return {x: def.a.x + def.a.width / 2, y: def.a.y + def.a.height / 2};
+    const n = def.a.d.match(/-?\d+(\.\d+)?/g).map(Number); let sx = 0, sy = 0, k = 0;
+    for (let i = 0; i + 1 < n.length; i += 2){ sx += n[i]; sy += n[i+1]; k++; } return {x: sx / k, y: sy / k};
+  }
+  function drawGun(svgWrap, row, prevRow){
+    const g = GUNS[row.category] || GUNS['Assault Rifle'];
+    const svg = sv('svg', {viewBox:'0 0 820 360', width:'100%', class:'bf-gun', role:'img', 'aria-label':'Schematic ' + row.category + ' with its attachments'});
+    Object.keys(LABELS).forEach(slot => {
+      const p = LABELS[slot], c = partCenter(g[slot]);
+      const ax = p.x + 60, ay = p.top ? p.y + 44 : p.y - 22;
+      sv('line', {class:'lead', x1:ax, y1:ay, x2:c.x, y2:c.y}, svg);
+    });
+    sv('path', {class:'body', d:g.body}, svg);
+    Object.keys(LABELS).forEach(slot => {
+      const def = g[slot], a = split(row[slot]);
+      sv(def.t, Object.assign({class:'part' + (a ? ' on' : '')}, def.a), svg);
+    });
+    Object.keys(LABELS).forEach(slot => {
+      const p = LABELS[slot], a = split(row[slot]);
+      const prev = prevRow ? split(prevRow[slot]) : null;
+      const isNew = a && prev && prev.name !== a.name;
+      const t1 = sv('text', {class:'slot', x:p.x, y:p.y}, svg); t1.textContent = slot;
+      const t2 = mark(sv('text', {class:'att' + (isNew ? ' new' : ''), x:p.x, y:p.y + 19}, svg), row.key, slot); t2.textContent = a ? a.name : '—';
+      const t3 = sv('text', {class:'lv', x:p.x, y:p.y + 36}, svg); t3.textContent = a ? (a.pts + ' pts · unlocks L' + a.lvl) : 'empty';
+    });
+    svgWrap.appendChild(svg);
+  }
+
+  function list(box, title, text, key, field){
+    const d = document.createElement('div'); d.className = 'bf-box';
+    const h = document.createElement('h3'); h.textContent = title; d.appendChild(h);
+    const parts = String(text || '').split(' | ').filter(Boolean);
+    const ul = mark(document.createElement('ul'), key, field);
+    parts.forEach(t => { const li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+    d.appendChild(ul); box.appendChild(d);
+  }
+
+  function renderDetail(all){
+    const body = document.getElementById('detail-body');
+    const hd = document.getElementById('detail-head');
+    body.replaceChildren(); hd.replaceChildren();
+    const mine = rowsFor(all, state.weapon);
+    if (!mine.length){ const e = document.createElement('div'); e.className = 'bf-empty'; e.textContent = 'Pick a weapon on the left.'; body.appendChild(e); return; }
+    const lv = mine.filter(r => r.kind === 'level').sort((a,b) => a.level - b.level);
+    const endRow = mine.find(r => r.kind === 'end');
+    const row = state.end ? endRow : pick(lv, state.level);
+    const eb = document.querySelector('#slider .bf-btn[data-l="end"]');
+    eb.replaceChildren('Meta');
+    if (endRow){
+      const lbl = String(endRow.level_label || '');
+      if (/\d/.test(lbl)){
+        const n = mark(document.createElement('span'), endRow.key, 'level'); n.textContent = endRow.level;
+        eb.append(' (', n, (lbl.indexOf('+') >= 0 ? '+' : '') + ')');
+      } else eb.append(' (?)');
+    }
+    const prevIdx = lv.indexOf(row); const prevRow = !state.end && prevIdx > 0 ? lv[prevIdx - 1] : null;
+
+    const head = document.createElement('div'); head.className = 'bf-dhead';
+    const h = mark(document.createElement('h2'), row.key, 'weapon'); h.textContent = row.weapon;
+    const t = mark(document.createElement('span'), row.key, 'tier'); t.className = 'tier ' + tierClass(row.tier); t.textContent = row.tier;
+    const cat = mark(document.createElement('span'), row.key, 'category'); cat.className = 'bf-meta'; cat.textContent = row.category;
+    head.append(h, t, cat); hd.appendChild(head);
+    const note = mark(document.createElement('p'), row.key, 'note'); note.className = 'bf-meta'; note.textContent = row.note; hd.appendChild(note);
+    const un = document.createElement('p'); un.className = 'bf-meta'; un.append('Unlock: ');
+    const uns = mark(document.createElement('span'), row.key, 'unlock'); uns.textContent = row.unlock; un.appendChild(uns); hd.appendChild(un);
+    if (row.s5){ const s5 = document.createElement('p'); s5.className = 'bf-meta'; s5.append('Season 5: '); const s = mark(document.createElement('span'), row.key, 's5'); s.textContent = row.s5; s5.appendChild(s); hd.appendChild(s5); }
+
+    const info = document.createElement('p'); info.className = 'bf-meta';
+    if (state.end){
+      info.append('Source meta build · needs ');
+      const ll = mark(document.createElement('span'), row.key, 'level_label'); ll.textContent = row.level_label; info.appendChild(ll);
+    } else {
+      info.append('Best overall build for levels ');
+      const a = mark(document.createElement('span'), row.key, 'level'); a.textContent = row.level; info.appendChild(a); info.append('–');
+      const b = mark(document.createElement('span'), row.key, 'level_to'); b.textContent = row.level_to; info.appendChild(b);
+      if (prevRow) info.append(' · green = changed since level ' + prevRow.level);
+    }
+    info.append(' · ');
+    const pts = mark(document.createElement('span'), row.key, 'points'); pts.textContent = row.points; info.append(pts, ' pts · ');
+    const st = mark(document.createElement('span'), row.key, 'status'); st.className = 'st ' + row.status; st.textContent = row.status; info.appendChild(st);
+    body.appendChild(info);
+
+    const gun = document.createElement('div'); gun.id = 'gun'; body.appendChild(gun);
+    drawGun(gun, row, prevRow);
+
+    const cols = document.createElement('div'); cols.className = 'bf-cols';
+    list(cols, 'Make it a close-range build', row.close_swaps, row.key, 'close_swaps');
+    list(cols, 'Make it a long-range build', row.range_swaps, row.key, 'range_swaps');
+    const nx = document.createElement('div'); nx.className = 'bf-box';
+    const nh = document.createElement('h3'); nh.textContent = state.end ? 'Notes' : 'Next upgrade'; nx.appendChild(nh);
+    const np = mark(document.createElement('p'), row.key, 'next_upgrade'); np.textContent = row.next_upgrade || '—'; nx.appendChild(np);
+    if (row.Extra){ const ex = document.createElement('p'); ex.append('Other: '); const e = mark(document.createElement('span'), row.key, 'Extra'); e.textContent = row.Extra; ex.appendChild(e); ex.style.marginTop = '6px'; nx.appendChild(ex); }
+    const src = mark(document.createElement('p'), row.key, 'source'); src.style.marginTop = '6px'; src.style.color = 'var(--color-fg-muted)'; src.textContent = row.source; nx.appendChild(src);
+    cols.appendChild(nx);
+    body.appendChild(cols);
+  }
+
+  function render(){
+    document.querySelectorAll('#cats button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === state.cat ? 'true' : 'false'));
+    const wd = dash.data('weapons'), tbody = document.querySelector('#wt tbody');
+    if (wd.status === 'ok'){
+      
+      const shown = wd.data.filter(r => (state.cat === 'All' || r.category === state.cat) && (!state.q || r.weapon.toLowerCase().includes(state.q)))
+        .sort((a,b) => (tierRank(a.tier) - tierRank(b.tier)) || (+a.order - +b.order));
+      if (!state.weapon && shown.length) state.weapon = shown[0].weapon;
+      tbody.replaceChildren(...shown.map(r => {
+        const tr = document.createElement('tr'); tr.dataset.key = r.weapon; tr.className = 't' + tierClass(r.tier) + (r.weapon === state.weapon ? ' sel' : '');
+        const a = document.createElement('td'); a.textContent = r.weapon;
+        const b = document.createElement('td'); b.textContent = r.category;
+        const c = document.createElement('td'); const s = document.createElement('span'); s.className = 'tier ' + tierClass(r.tier); s.textContent = r.tier; c.appendChild(s);
+        const d = document.createElement('td'); d.className = 'meta'; d.textContent = r.endgame_level;
+        tr.append(a, b, c, d); return tr;
+      }));
+    } else tbody.replaceChildren();
+
+    syncSlider();
+    const pd = dash.data('progression');
+    if (pd.status === 'ok') renderDetail(pd.data);
+    else if (pd.status === 'error'){ const b = document.getElementById('detail-body'); b.replaceChildren(); const e = document.createElement('div'); e.className = 'bf-empty'; e.textContent = 'Failed to load'; b.appendChild(e); }
+
+    const pn = dash.data('patch'), ol = document.getElementById('pn');
+    ol.replaceChildren(...(pn.status === 'ok' ? pn.data : []).map(r => { const li = document.createElement('li');
+      li.setAttribute('data-source','patch'); li.setAttribute('data-where','n=' + r.n); li.setAttribute('data-field','text'); li.textContent = r.text; return li; }));
+  }
+  dash.onData(render);
+})();
+</script>
+
+</div></body></html>
